@@ -1,0 +1,109 @@
+from tkinter import *
+
+
+def equati(s):
+    e = equation.get()
+    e = e + s
+    equation.delete(0, END)
+    equation.insert(0, e)
+
+
+def dele():
+    equation.delete(0, END)
+
+
+def back():
+    f = equation.get()
+    f = f[:len(f)-1]
+    equation.delete(0, END)
+    equation.insert(0, f)
+
+
+def equate():
+    c = equation.get()
+
+    c = c.replace(' ', '')
+
+    def reverse(c):
+        c = c[::-1]
+        return c
+
+    t = reverse(c)
+    l = len(t)
+    a = 0
+    b = 0
+    m = 0
+    for i in (t):
+        if (i == '+') or (i == '-') or (i == '*') or (i == '/') or (i == '%'):
+            break
+        b += pow(10, m) * int(i)
+        m += 1
+    k = m
+    for j in range((k + 1), l):
+        a += pow(10, (j - k - 1)) * int(t[j])
+    if (t[k] == '+'):
+        equation.delete(0, END)
+        equation.insert(0, (a + b))
+    if (t[k] == '-'):
+        equation.delete(0, END)
+        equation.insert(0, (a - b))
+    if (t[k] == '/'):
+        equation.delete(0, END)
+        equation.insert(0, (a / b))
+    if (t[k] == '*'):
+        equation.delete(0, END)
+        equation.insert(0, (a * b))
+    if (t[k] == '%'):
+        equation.delete(0, END)
+        equation.insert(0, (a % b))
+
+
+if __name__ == "__main__":
+    root = Tk()
+    root.title('Calculator')
+    root.iconbitmap('C:/Users/Mahesh/PycharmProjects/Calculator/Untitled-1.ico')
+
+    equation = Entry(root, width=21, borderwidth=0, justify='left')
+    equation.grid(row=1, column=0, columnspan = 4)
+
+    One = Button(root, text='1', command=lambda: equati('1'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Two = Button(root, text='2', command=lambda: equati('2'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Three = Button(root, text='3', command=lambda: equati('3'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Four = Button(root, text='4', command=lambda: equati('4'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Five = Button(root, text='5', command=lambda: equati('5'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Six = Button(root, text='6', command=lambda: equati('6'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Seven = Button(root, text='7', command=lambda: equati('7'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Eight = Button(root, text='8', command=lambda: equati('8'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Nine = Button(root, text='9', command=lambda: equati('9'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Zero = Button(root, text='0', command=lambda: equati('0'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+
+    Clear = Button(root, text='C', command=lambda: dele(), width=4, height=1, bg='White', fg='Red', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Back = Button(root, text='<-', command=lambda: back(), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Equal = Button(root, text='=', command=lambda: equate(), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Plus = Button(root, text='+', command=lambda: equati('+'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Minus = Button(root, text='-', command=lambda: equati('-'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Multiply = Button(root, text='*', command=lambda: equati('*'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Divide = Button(root, text='/', command=lambda: equati('/'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+    Remainder = Button(root, text='%', command=lambda: equati('%'), width=4, height=1, bg='White', fg='Orange', activeforeground='Purple', relief = 'raised', font = 'SWRomnt')
+
+    One.grid(row=2, column=1)
+    Two.grid(row=2, column=2)
+    Three.grid(row=2, column=3)
+    Four.grid(row=3, column=1)
+    Five.grid(row=3, column=2)
+    Six.grid(row=3, column=3)
+    Seven.grid(row=4, column=1)
+    Eight.grid(row=4, column=2)
+    Nine.grid(row=4, column=3)
+    Zero.grid(row=5, column=1)
+
+    Clear.grid(row=5, column=2)
+    Back.grid(row=5, column=3)
+    Equal.grid(row=7, column=3)
+    Plus.grid(row=6, column=1)
+    Minus.grid(row=6, column=2)
+    Multiply.grid(row=7, column=1)
+    Divide.grid(row=7, column=2)
+    Remainder.grid(row=6, column=3)
+
+    root.mainloop()
